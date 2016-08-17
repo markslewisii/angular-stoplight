@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="cityRoads" ng-controller="MainController">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js'></script>
+
+    <script src='./js/app.js'></script>
+
+    <style type="text/css">
+      .semafore {
+        position: absolute;
+        width: 25%;
+        height: 25%;
+        top: 38%;
+        left: 38%;
+      }
+
+      .ns {
+        width: 60%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 20%;
+        border-radius: 10%;
+      }
+      .ew {
+        width: 100%;
+        height: 60%;
+        position: absolute;
+        top: 20%;
+        left: 0px;
+        border-radius: 10%;
+      }
+
+      .go {
+        animation-duration: 1.5s;
+        animation-name: redtogreen;
+        background-color: #00ff00;        
+      }
+      .stop {
+        animation-duration: 1.5s;
+        animation-name: yellotored;
+          background-color: #ff0000;
+
+      }
+
+      
+      
+      @keyframes yellotored {
+        0%, 99% {
+          background-color: #ffff00; 
+        }
+
+        100% {
+          background-color: #ff0000;
+        }
+      }
+      @keyframes redtogreen {
+        0%, 99% {
+          background-color: #ff0000; 
+        }
+
+        100% {
+          background-color: #00ff00;
+        }
+      }
+
+      .semafore-top {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        border-radius: 5%;
+        background-color: #ffaa00;  
+        text-align: center;      
+      }
+
+      .semafore-top button {
+        margin-top: 40%;
+      }
+
+      .intersection {
+        width: 600px;
+        height: 600px;
+        position: relative;
+        background-color: #000000;
+      }
+
+      .corner {
+        width: 33%;
+        height: 33%;
+        border-radius: 10%;
+        border: 1px solid #000000;
+        position: absolute;
+        background-color: #006600;        
+
+      }
+
+      .nw, .ne {
+        top: 0px;
+      }
+
+      .sw, .se {
+        bottom: 0px;
+      }
+      .nw, .sw {
+        left: 0px;
+      }
+      .ne, .se {
+        right: 0px;
+      }
+
+
+      .line {
+        border: 1px dashed #ffaa00;
+        position: absolute;
+      }
+
+      .hline {
+        width: 33%;
+        height: 1px;
+        top: 50%;
+      }
+     .vline {
+        width: 1px;
+        height: 33%;
+        left: 50%;
+      }
+
+      .n {
+        top: 0px;
+      }
+
+      .e {
+        right: 0px;
+      }
+
+      .s {
+        bottom: 0px;
+      }
+
+      .w {
+        left: 0px;
+      }
+
+
+
+    </style>
+        
+  </head>
+  <body ng-view>
+
+  <div class="intersection">
+      <div class="corner nw"></div>
+      <div class="corner ne"></div>
+      <div class="corner sw"></div>
+      <div class="corner se"></div>
+
+      <div class="line vline n"></div>
+      <div class="line hline e"></div>
+      <div class="line vline s"></div>
+      <div class="line hline w"></div>
+
+      <div class="semafore">
+        <div ng-class="{'ns go': direction, 'ns stop': !direction}" stop-light-directive></div>
+        <div ng-class="{'ew stop': direction, 'ew go': !direction}" stop-light-directive></div>
+        <div class="semafore-top">
+          <div stop-light-switch-directive>toggle</div>
+        </div>
+      </div>
+  </div>
+
+    <h1>Stop Light Example</h1>
+    {{test}}
+    
+    <h2>Instructions</h2>
+    Create an app with two stoplights using only green and red.
+    <ul>
+      <li>Light #1 will be for North/South directions.</li>
+      <li>Light #2 will be for East/West directions.
+        <ul><li>
+          <em><strong>Bonus points:</strong> Create what looks like an intersection in HTML/CSS and arrange stoplights accordingly.</em>
+        </li></ul>
+      </li>
+      
+      <li>Create a button that will toggle both lights.
+        <ul><li>
+          <em><strong>Bonus points:</strong> Use a timer to automatically switch stoplights at 5 second intervals.</em> 
+        </li></ul>
+      </li>
+      <li>Use valid HTML and CSS.</li>
+    </ul>
+    
+    <h2>Bonus</h2>
+    <ul>
+      <li>add yellow and animate from green to red.</li>
+      <li>use LESS for your CSS</li>
+      <li>use Bootstrap (optional - Use gear icon in CSS panel to quick add Bootstrap)</li>
+    </ul>
+  </body>
+</html>
